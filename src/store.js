@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
-const history = createHistory()
+export const history = createHistory()
 
 
 const store = createStore(
