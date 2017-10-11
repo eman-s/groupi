@@ -1,6 +1,5 @@
-export const AUTHENTICATE_USER = 'AUTHENTICATE_USER'
-export const USER_LOG_OUT = 'USER_LOG_OUT'
 import { push } from 'react-router-redux'
+
 
 
 
@@ -13,5 +12,11 @@ const makeActionCreator = (type) =>{
   }
 }
 
-export const authenticateUser =  makeActionCreator(AUTHENTICATE_USER)
-export const logOut = makeActionCreator(USER_LOG_OUT)
+export const logOut = () => {
+  return (dispatch, _, getFirebase) => {
+    const firebase = getFirebase()
+    return firebase.logout()
+    .then(response => dispatch(push('/')))
+
+  }
+}

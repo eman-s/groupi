@@ -14,9 +14,9 @@ const store = createStore(
   initialState,
   compose(
     applyMiddleware(
+       // Pass getFirebase function as extra argument
       thunk.withExtraArgument(getFirebase),
       routerMiddleware(history)
-       // Pass getFirebase function as extra argument
     ),
     reactReduxFirebase(firebaseConfig, { userProfile: 'users', enableLogging: false }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

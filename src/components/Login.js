@@ -9,9 +9,10 @@ import {
   isEmpty,
   pathToJS
 } from 'react-redux-firebase'
-import PropTypes from 'prop-types'
+import  PropTypes from 'prop-types'
 import {compose, bindActionCreators} from 'redux'
 import { push } from 'react-router-redux'
+import {logOut} from '../actions/index'
 
 
 
@@ -19,11 +20,10 @@ export default class Login extends Component{
 
 
   render(){
-    console.log(this.props);
+    console.log('this.props::',this.props);
     return(
       <div>
       <h1>Log In Page</h1>
-      <button onClick={this.props.logOut}>Sign Out</button>
       <button onClick={this.props.facebookLogin}>Sign In Using Facebook</button>
 
       </div>
@@ -47,19 +47,13 @@ const facebookLogin = loginData => {
   }
 }
 
-const logOut = () => {
-  return (dispatch, _, getFirebase) => {
-    const firebase = getFirebase()
-    firebase.logout().then(response => console.log(response))
-  }
-}
 
 
 const mapStateToProps = (state) => {
   return{
-      authError: pathToJS(firebase, 'authError'),
-      auth: pathToJS(firebase, 'auth'),
-      profile: pathToJS(firebase, 'profile')
+      authError: pathToJS(state.firebase, 'authError'),
+      auth: pathToJS(state.firebase, 'auth'),
+      profile: pathToJS(state.firebase, 'profile')
     }
 }
 
@@ -70,7 +64,7 @@ const mapDispatchToProps = (dispatch, props) => {
   }, dispatch)
 }
 
-export const loginContainer = compose(
+export const LoginContainer = compose(
   firebaseConnect(),
   connect(
     mapStateToProps,

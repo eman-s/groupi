@@ -11,16 +11,18 @@ import {history} from './store'
 import Login from './components/Login'
 import Profile from './components/Profile'
 import BaseLayout from './components/BaseLayout'
-import {loginContainer} from './components/Login'
+import {LoginContainer} from './components/Login'
+import {ProfileContainer} from './components/Profile'
+import {layoutContainer} from './components/BaseLayout'
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <BaseLayout>
-      <Switch>
-        <Route exact path='/' component={loginContainer} />
-        <Route exact path='/profile' component={Profile} />
-      </Switch>
+        <Switch>
+          <Route exact path='/' component={LoginContainer} />
+          <Route exact path='/profile' component={ProfileContainer} />
+        </Switch>
       </BaseLayout>
     </ConnectedRouter>
   </Provider>
