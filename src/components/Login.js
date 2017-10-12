@@ -35,7 +35,9 @@ export default class Login extends Component{
 
 const facebookLogin = loginData => {
   return (dispatch, _, getFirebase) => {
+    console.log('this is get firebase',getFirebase());
     return getFirebase()
+
     .login({ provider: 'facebook', type: 'popup' })
     .then(response => dispatch(push('/profile')))
 

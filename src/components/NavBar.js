@@ -5,7 +5,8 @@ import {
   firebaseConnect,
   isLoaded,
   isEmpty,
-  pathToJS
+  pathToJS,
+  dataToJS
 } from 'react-redux-firebase'
 import {compose, bindActionCreators} from 'redux'
 import { connect } from 'react-redux'
@@ -13,6 +14,7 @@ import { connect } from 'react-redux'
 export default class NavBar extends Component{
   render(){
     const {profile} = this.props
+    console.log(this.props.todos);
     let navBar
       if (isEmpty(profile)){
         return  <div>
@@ -21,6 +23,7 @@ export default class NavBar extends Component{
       }else if (isLoaded(profile)){
          return <div>
             <NavLink to='/profile'>Home</NavLink>
+            <NavLink to='/post'>Create Post</NavLink>
             <NavLink to='/feed'>Feed</NavLink>
             <button onClick={this.props.logOut}>Log Out</button>
           </div>
@@ -37,7 +40,8 @@ export default class NavBar extends Component{
 const mapStateToProps = (state) => {
   console.log(state);
   return{
-    profile: pathToJS(state.firebase, 'profile')
+    profile: pathToJS(state.firebase, 'profile'),
+    todos: dataToJS(state.firebase, 'todos')
     }
 }
 
